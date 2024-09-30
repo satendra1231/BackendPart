@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        height: 50vh;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+    }
+    .container{
+        height: 250px;
+        width: 350px;
+        background-color: rgba(122, 172, 175, 0.945);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 2px solid;
+        border-radius: 10px;
+    }
+    .one{
+        font-size: 20px;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>Welcome !</h1>
+        <label class="one" for="">Enter a new password</label>
+        <input style="font-size: 20px;" id="input" type="password" placeholder="xxxxxxxx">
+        <button style="font-size: 20px;" onclick="submitForm()">submit</button>
+    </div>
+    <h1 id="success">Password reset successfully :)</h1>
+    <h1 id="error"></h1>
+
+    <script>
+        let inputTag = document.getElementById('input')
+        let container = document.getElementsByClassName('container')[0]
+        let successTag = document.getElementById('success')
+        let errorTag = document.getElementById('error')
+
+        successTag.style.display = 'none'
+
+        const submitForm = async()=>{
+            let token = '<%= token %>'
+            let value = inputTag.value
+            let obj = {
+                newPassword:value
+            }
+            let res = await fetch(`http://localhost:5000/users/reset-password/${token}`,{
+                method:"post",
+                headers:{
+                    'content-type':'application/json',
+                },
+                body:JSON.stringify(obj)
+            })
+            let data = await res.json();
+            console.log(data)
+            if(data.success){
+                container.style.display = "none";
+                successTag.style.display= "block"
+            }
+            else{
+                container.style.display = "none";
+                errorTag.innerHTML = data.msg
+            }
+        } 
+
+
+    </script>
+  
+</body>
+
+</html>
