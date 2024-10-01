@@ -14,12 +14,6 @@ const postSchema = new mongoose.Schema({
         ref:'users',
         required:true
     },
-    // likes:{
-    //     type:String,
-    // },
-    // comments:{
-    //     type:String,
-    // },
 })
 postSchema.add({
     likes:[

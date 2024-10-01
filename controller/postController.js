@@ -104,8 +104,8 @@ const addComment = async(req,res)=>{
 
 const deleteComment = async(req,res)=>{
     const {postId,commentId} = req.params;
-    console.log("postId=",postId)
-    console.log("commentId=",commentId)
+    // console.log("postId=",postId)
+    // console.log("commentId=",commentId)
 
     let post = await PostCollection.findById(postId)
     await post.comments.pull({_id:commentId})
