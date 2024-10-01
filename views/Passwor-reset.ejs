@@ -64,7 +64,7 @@
                 body:JSON.stringify(obj)
             })
             let data = await res.json();
-            // console.log(data)
+            console.log(data)
             if(data.success){
                 container.style.display = "none";
                 successTag.style.display= "block"
