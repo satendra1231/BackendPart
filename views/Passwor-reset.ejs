@@ -56,7 +56,7 @@
             let obj = {
                 newPassword:value
             }
-            let res = await fetch(`http://localhost:5000/users/reset-password/${token}`,{
+            let res = await fetch(`https://backendpart-qfio.onrender.com/users/reset-password/${token}`,{
                 method:"post",
                 headers:{
                     'content-type':'application/json',
