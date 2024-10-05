@@ -163,7 +163,7 @@ async function sendResetEmail(email,token){
         if(!token){
             return res.json({msg:'token expired', success:false})
         }
-        res.render('password-reset',{token})
+        res.render('Password-reset',{token})
         
  }
  const passwordResetFinally = async(req,res)=>{
