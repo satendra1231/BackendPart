@@ -117,7 +117,7 @@ function generateToken(){
 const forgetPassword = async(req,res)=>{
     const {email}= req.body;
     let user = await userCollection.findOne({email})
-    console.log(user)
+    // console.log(user)
     if(user){
         let resetToken = await generateToken();
         await userCollection.updateOne({_id:user._id},{$set:{resetToken:resetToken}})
